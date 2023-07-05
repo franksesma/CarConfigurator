@@ -1,0 +1,16 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="text-center">
+    <div class="mainText">
+        <h1 class="display-4 text-capitalize text-black">Welcome to Create-a-Car</h1>
+        <h2 class="mainSubTitle">Choose between a lineup of vehicles or create a personalized car of your own</h2>
+    </div>
+
+    <img class="mainImage" src="~/images/NewLogoSmaller.png" />
+    <br/>
+    <a class="btn btn-primary mt-1" asp-area="" asp-page="Car">Order Now</a>
+</div>

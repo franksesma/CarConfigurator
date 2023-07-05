@@ -1,0 +1,68 @@
+﻿@page
+@model CarBuilder.Pages.Forms.CustomCarModel
+@{
+	ViewData["Title"] = "Build";
+}
+
+
+<div class="text-center container">
+	<h1>Create Your Own Car!</h1>
+
+	<form method="post" class="mx-auto mt-5 mb-10 px-5 pt-5 pb-5 rounded-5 bg-light col-4">
+		<label for="bodyType">Body Style:</label>
+		<select id="bodyType" class="select-spacing"  asp-for="Car.BodyType" onchange="updateCarImage()">
+			<option value="coupe">Coupe</option>
+			<option value="compact">Compact</option>
+			<option value="hatchback">Hatchback</option>
+		</select>
+		<br />
+		<label for="bodyColor">Body Color:</label>
+		<select id="bodyColor" class="select-spacing" asp-for="Car.BodyColor" onchange="updateCarImage()">
+			<option value="red">Red</option>
+			<option value="blue">Blue</option>
+			<option value="gray">Gray</option>
+			<option value="white">White</option>
+		</select>
+		<br />
+		<label for="wheelType">Wheel Style:</label>
+		<select id="wheelType" class="select-spacing" asp-for="Car.WheelType" onchange="updateCarImage()">
+			<option value="wheel1">Style 1</option>
+			<option value="wheel2">Style 2</option>
+			<option value="wheel3">Style 3</option>
+			<option value="wheel4">Style 4</option>
+		</select>
+		<br />
+		<label for="wheelColor">Wheel Color:</label>
+		<select id="wheelColor" class="select-spacing" asp-for="Car.WheelColor" onchange="updateCarImage()">
+			<option value="silver">Silver</option>
+			<option value="black">Black</option>
+		</select>
+		<br/>
+		<button class="btn btn-primary mt-1" type="submit">Order Car</button>
+	</form>
+
+	<div id="log"></div>
+	<div class="align-content-center" style="position: relative;">
+		<img id="carImage" src="/images/Body/coupe_red.png" alt="Car Image" />
+		<img id="wheelImage" src="/images/Wheels/wheel1_silver.png" alt="Wheel Image" />
+	</div>
+
+	<!--JavaScript code that listens for changes in the selection boxes and updates the car's image-->
+	@section Scripts {
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-Lb7yVxWvamWPDti3mAvnjJHZ+4k7PboZXMxE/YO/m25r6DNT8vzLEqZkR2X2aDIZ" crossorigin="anonymous"></script>
+		<script>
+			function updateCarImage() {
+				var bodyType = $("#bodyType").val();
+				var bodyColor = $("#bodyColor").val();
+				var wheelType = $("#wheelType").val();
+				var wheelColor = $("#wheelColor").val();
+
+				console.log("Body Type:", bodyType);
+				console.log("Body Color:", bodyColor);
+
+				$("#carImage").attr("src", "/images/Body/" + bodyType + "_" + bodyColor + ".png");
+				$("#wheelImage").attr("src", "/images/Wheels/" + wheelType + "_" + wheelColor + ".png");
+			}
+		</script>
+	}
+</div>

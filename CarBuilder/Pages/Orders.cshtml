@@ -1,0 +1,71 @@
+﻿@page
+@model CarBuilder.Pages.OrdersModel
+@{
+	ViewData["Title"] = "Orders";
+}
+
+<h3>Orders</h3>
+
+
+<hr />
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				ID
+			</th>
+			<th>
+				Car Name
+			</th>
+			<th>
+				Price
+			</th>
+			<th>
+				Body Style
+			</th>
+			<th>
+				Body Color
+			</th>
+			<th>
+				Wheel Style
+			</th>
+			<th>
+				Wheel Color
+			</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		@foreach(var order in Model.CarOrders)
+		{
+			<tr>
+				<td>
+					@order.Id
+				</td>
+				<td>
+					@order.CarName
+				</td>
+				<td>
+					$@order.CarPrice.ToString("N2")
+				</td>
+				<td>
+					@order.BodyType
+				</td>
+				<td>
+					@order.BodyColor
+				</td>
+				<td>
+					@order.WheelType
+				</td>
+				<td>
+					@order.WheelColor
+				</td>
+			</tr>
+		}
+
+		<tr>
+
+		</tr>
+	</tbody>
+</table>

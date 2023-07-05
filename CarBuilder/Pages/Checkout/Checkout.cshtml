@@ -1,0 +1,32 @@
+﻿@page
+@model CarBuilder.Pages.Checkout.CheckoutModel
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<h1>Checkout</h1>
+@{
+    var bodyImagePath = Model.GetBodyImagePath();
+    var wheelImagePath = Model.GetWheelImagePath();
+}
+
+<div class="align-content-center">
+    <div class="col-3 mx-auto mb-5">
+        <div class="align-content-center" style="position: relative;">
+            <img id="carImage" src="@bodyImagePath" asp-append-version="true" />
+            <img id="wheelImage" src="@wheelImagePath" asp-append-version="true" />
+        </div>
+        <div style="position: relative;">
+            <p style="font-size: 200%"<b>Order Details</b></p>
+            <p><b>Body Style:</b> @Model.BodyType</p>
+            <p><b>Body Color:</b> @Model.BodyColor</p>
+            <p><b>Wheel Style:</b> @Model.WheelType</p>
+            <p><b>Wheel Color:</b> @Model.WheelColor</p>
+            <p><b>Total Price:</b> $@Model.CarPrice.ToString("N2")</p>
+            <br/>
+            <a class="btn alert-primary mt-1 mx-auto" asp-area="" asp-page="Confirmation" asp-route-BodyType="@Model.BodyType"
+               asp-route-BodyColor="@Model.BodyColor" asp-route-WheelType="@Model.WheelType" asp-route-WheelColor="@Model.WheelColor"
+               asp-route-CarPrice="@Model.CarPrice" asp-route-CarName="@Model.CarName">Confirm Order</a>
+        </div>
+    </div>
+</div>

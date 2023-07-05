@@ -1,0 +1,53 @@
+﻿@page
+@model CarBuilder.Pages.CarModel
+@{
+	ViewData["Title"] = "Showroom";
+}
+
+<div class="text-center">
+	<div class="mainText">
+		<h1 class="display-4 text-capitalize text-black">Vehicle Showroom</h1>
+		<h4>Select from our lineup of vehicles or try our Car Configurator!</h4>
+		<p class="smallText"><i>Limited one vehicle per order</i></p>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-12 mb-5 mt-5">
+				<div class="w-100 row customDiv1">
+					<div class="col-4">
+						<img src="~/images/Create.png" class="w-100"/>
+					</div>
+					<div class="col-8 align-items-center">
+						<div class="align-middle customText1">
+							<h3 style="text-align:left;">Personalize Your Car</h3>
+							<p style="text-align:left;">Create a Car with our Car Configurator</p>
+							<a class="btn btn-primary" style="float: left" asp-area="" asp-page="Forms/CreateCar">Try Now</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- Display all preset car models to show on the Cars page -->
+			@foreach (var car in Model.presetCarSelections)
+			{
+				// retrieve image paths based on car info
+				var bodyImagePath = car.GetBodyImagePath();
+				var wheelImagePath = car.GetWheelImagePath();
+
+				<div class="col-4 mb-5">
+					<p><b>@car.CarName</b></p>
+					<div class="align-content-center" style="position: relative;">
+						<img id="carImage" src="@bodyImagePath" asp-append-version="true" />
+						<img id="wheelImage" src="@wheelImagePath" asp-append-version="true" />
+					</div>
+					<p>Price: $@car.CalculateFinalPrice().ToString("N2")</p>
+					<a class="btn btn-primary mt-1" asp-area="" asp-page="Checkout/Checkout" 
+					asp-route-BodyType="@car.BodyType" asp-route-BodyColor="@car.BodyColor"
+					asp-route-WheelType="@car.WheelType" asp-route-WheelColor="@car.WheelColor"
+					asp-route-CarPrice="@car.CalculateFinalPrice()" asp-route-CarName="@car.CarName">Order This Car</a>
+					<br />
+				</div>
+			}
+		</div>
+	</div>
+</div>
